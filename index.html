@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun! 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: bounce 1s ease-in-out infinite;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .cake {
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        /* Kue Dasar */
+        .cake-base {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(to bottom, #d4a574, #a67c52);
+            margin: 0 auto;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: shake 0.5s ease-in-out 3s infinite;
+        }
+
+        /* Lapisan Kue */
+        .cake-layer {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to bottom, #e8b4a8, #d4a574);
+            border-bottom: 2px solid #a67c52;
+        }
+
+        .layer-1 {
+            top: 0;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .layer-2 {
+            top: 50px;
+            height: 50px;
+        }
+
+        .layer-3 {
+            top: 100px;
+            height: 50px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* Frosting */
+        .frosting {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: #ff69b4;
+            top: -10px;
+            border-radius: 50%;
+        }
+
+        /* Lilin */
+        .candles {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .candle {
+            width: 8px;
+            height: 40px;
+            background: #ffd700;
+            border-radius: 4px;
+            position: relative;
+            animation: flicker 0.5s ease-in-out infinite;
+        }
+
+        .candle::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 15px;
+            background: linear-gradient(to top, #ff6347, #ffff00);
+            border-radius: 50% 50% 50% 0;
+            animation: flame 0.6s ease-in-out infinite;
+        }
+
+        /* Dekorasi */
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .sprinkle {
+            width: 8px;
+            height: 8px;
+            background: #ff1493;
+            border-radius: 50%;
+            animation: bounce 0.8s ease-in-out infinite;
+        }
+
+        .sprinkle:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .sprinkle:nth-child(2) {
+            animation-delay: 0.1s;
+            background: #00ff00;
+        }
+
+        .sprinkle:nth-child(3) {
+            animation-delay: 0.2s;
+            background: #ffd700;
+        }
+
+        .sprinkle:nth-child(4) {
+            animation-delay: 0.3s;
+            background: #00bfff;
+        }
+
+        /* Message */
+        .message {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animasi */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes flame {
+            0%, 100% {
+                transform: translateX(-50%) scaleY(1);
+            }
+            50% {
+                transform: translateX(-50%) scaleY(1.2);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff1493;
+            pointer-events: none;
+        }
+
+        .confetti.gold {
+            background: #ffd700;
+        }
+
+        .confetti.blue {
+            background: #00bfff;
+        }
+
+        .confetti.green {
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 SELAMAT ULANG TAHUN! 🎉</h1>
+        
+        <div class="cake">
+            <div class="candles">
+                <div class="candle"></div>
+                <div class="candle"></div>
+                <div class="candle"></div>
+            </div>
+            
+            <div class="cake-base">
+                <div class="frosting"></div>
+                <div class="layer-1"></div>
+                <div class="layer-2"></div>
+                <div class="layer-3"></div>
+                
+                <div class="decoration">
+                    <div class="sprinkle"></div>
+                    <div class="sprinkle"></div>
+                    <div class="sprinkle"></div>
+                    <div class="sprinkle"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="message">
+            <p>Semoga hari spesialmu penuh kebahagiaan!</p>
+            <div class="name" id="birthday-name">🎂 Ibrahim Asmorodina 🎂</div>
+            <p>Wishing you all the best on your special day!</p>
+        </div>
+    </div>
+
+    <script>
+        // Buat Confetti
+        function createConfetti() {
+            const confettiCount = 50;
+            const colors = ['', 'gold', 'blue', 'green'];
+            
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = `confetti ${colors[Math.floor(Math.random() * colors.length)]}`;
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-10px';
+                confetti.style.animation = `fall ${Math.random() * 2 + 3}s linear forwards`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Animasi Jatuh untuk Confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(${window.innerHeight}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Jalankan Confetti setiap 2 detik
+        setInterval(createConfetti, 2000);
+
+        // Ganti nama dengan nama yang diinginkan
+        // Ubah "Nama Kamu" dengan nama sebenarnya
+        document.getElementById('birthday-name').textContent = '🎂 ' + 'Ibrahim Asmorodina' + ' 🎂';
+    </script>
+</body>
+</html>
